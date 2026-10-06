@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CARO: Contact-Agnostic Residual Observation for Zero-Shot Robust Quadruped Locomotion</title>
+  <meta name="description" content="CARO provides structured joint-level residual feedback for zero-shot robust quadruped locomotion across unseen payloads, terrains, and abrupt impacts.">
+  <meta name="keywords" content="CARO, quadruped locomotion, reinforcement learning, residual observation, zero-shot robustness">
+  <meta name="citation_title" content="CARO: Contact-Agnostic Residual Observation for Zero-Shot Robust Quadruped Locomotion">
+  <meta name="citation_author" content="Zihan Yang">
+  <meta name="citation_author" content="Shixuan Han">
+  <meta name="citation_author" content="Kexin Guo">
+  <meta name="citation_author" content="Xiang Yu">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="hero publication-header">
+    <div class="hero-body">
+      <div class="container page-container has-text-centered">
+        <h1 class="title publication-title">
+          <span class="title-line"><span class="caro-wordmark">CARO</span>: Contact-Agnostic Residual Observation</span>
+          <span class="title-line">for Zero-Shot Robust Quadruped Locomotion</span>
+        </h1>
+        <!-- <p class="publication-authors">
+          <span>Zihan Yang<sup>1</sup></span>
+          <span>Shixuan Han<sup>2</sup></span>
+          <span>Kexin Guo<sup>1,†</sup></span>
+          <span>Xiang Yu<sup>2</sup></span>
+        </p>
+        <div class="publication-affiliations">
+          <p><sup>1</sup> School of Aeronautic Science and Engineering, Beihang University</p>
+          <p><sup>2</sup> School of Automation Science and Electrical Engineering, Beihang University</p>
+        </div>
+        <p class="corresponding-author"><sup>†</sup> Corresponding author</p> -->
+        <p> "Anonymous Authors" </p>
+        <!-- <div class="publication-links">
+          <a class="button is-dark is-rounded paper-link" href="./static/paper/caro.pdf" target="_blank" rel="noopener" aria-label="Read the CARO paper (PDF, opens in a new tab)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+            <span>Paper</span>
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="teaser" aria-label="Zero-shot multi-terrain locomotion">
+      <div class="container page-container">
+        <div class="terrain-grid">
+          <figure>
+            <a class="image-link" href="./static/images/caro/terrain-grass.webp" target="_blank" rel="noopener" aria-label="View the full-size grass experiment image (new tab)">
+              <img src="./static/images/caro/terrain-grass-thumb.webp" width="578" height="420" alt="Lite3 carrying a payload while walking through deep grass.">
+            </a>
+            <figcaption>Deep grass</figcaption>
+          </figure>
+          <figure>
+            <a class="image-link" href="./static/images/caro/terrain-stones.webp" target="_blank" rel="noopener" aria-label="View the full-size stepping stones experiment image (new tab)">
+              <img src="./static/images/caro/terrain-stones-thumb.webp" width="560" height="432" alt="Lite3 carrying a payload while traversing uneven stepping stones.">
+            </a>
+            <figcaption>Stepping stones</figcaption>
+          </figure>
+          <figure>
+            <a class="image-link" href="./static/images/caro/terrain-sand.webp" target="_blank" rel="noopener" aria-label="View the full-size sand experiment image (new tab)">
+              <img src="./static/images/caro/terrain-sand-thumb.webp" width="640" height="531" alt="Lite3 walking over sand with a weight mounted on its back.">
+            </a>
+            <figcaption>Sand</figcaption>
+          </figure>
+          <figure>
+            <a class="image-link" href="./static/images/caro/terrain-gravel.webp" target="_blank" rel="noopener" aria-label="View the full-size gravel slope experiment image (new tab)">
+              <img src="./static/images/caro/terrain-gravel-thumb.webp" width="640" height="547" alt="Lite3 carrying a payload while walking on a gravel-covered slope.">
+            </a>
+            <figcaption>Gravel slope</figcaption>
+          </figure>
+        </div>
+        <p class="teaser-summary"><strong>CARO</strong> gives locomotion policies structured residual feedback for zero-shot robustness to unseen payloads, terrains, and impacts.</p>
+        <p class="teaser-detail">Trained only on flat terrain. Deployed on unseen surfaces with a <strong>2.5 kg payload</strong>, without hardware-specific policy fine-tuning.</p>
+      </div>
+    </section>
+
+    <section class="key-results-section" aria-label="Key results">
+      <div class="container page-container">
+        <dl class="key-results">
+          <div class="key-result">
+            <dt>Mean simulation success</dt>
+            <dd class="result-value">87.1<span>%</span></dd>
+            <dd class="result-note">25 payload–terrain combinations</dd>
+          </div>
+          <div class="key-result">
+            <dt>Successful payload</dt>
+            <dd class="result-value">8.5 <span>kg</span></dd>
+            <dd class="result-note">Real-world forward locomotion</dd>
+          </div>
+          <div class="key-result">
+            <dt>Platform landing</dt>
+            <dd class="result-value">0.2 <span>m</span></dd>
+            <dd class="result-note">3/3 successful tested landings</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section abstract-section" aria-labelledby="abstract-title">
+      <div class="container text-container">
+        <h2 class="title section-title" id="abstract-title">Abstract</h2>
+        <p>We propose CARO, a contact-agnostic residual observation framework for robust quadruped locomotion. CARO embeds a fixed-base Euler–Lagrange model into the reinforcement learning control loop to construct a torque-level residual without torque sensors, explicit contact estimation, or floating-base position and linear-velocity measurements. A disturbance observer extracts structured feedback on dynamics mismatch, which the policy uses for online adaptation. CARO shares the nominal policy’s terrain, command, and domain-randomization settings and requires neither a specialized disturbance curriculum nor additional adaptation supervision. Simulation and real-world experiments demonstrate improved zero-shot robustness to out-of-distribution payloads, center-of-mass shifts, terrain geometries, abrupt dynamics changes, and elevated-platform landings.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="method-title">
+      <div class="container page-container">
+        <h2 class="title section-title" id="method-title">Method</h2>
+        <p class="section-intro">A fixed-base internal model turns joint measurements and commanded torques into a structured residual. The observer supplies this feedback to the policy, which learns how to respond to changes in dynamics and contact conditions.</p>
+        <figure class="wide-figure framework-figure">
+          <a class="image-link" href="./static/images/caro/framework.png" target="_blank" rel="noopener" aria-label="View the full-size CARO framework diagram (new tab)">
+            <img src="./static/images/caro/framework.png" width="1998" height="841" loading="lazy" decoding="async" alt="CARO control loop: the policy commands a joint PD controller; a fixed-base model and residual observer feed joint-level dynamics mismatch back into the policy observations.">
+          </a>
+          <figcaption>The base is fixed only in the internal model. The physical robot remains a floating-base system.</figcaption>
+        </figure>
+        <div class="residual-layout">
+          <div class="residual-description">
+            <h3 class="title subsection-title">What does the policy observe?</h3>
+            <p>The joint-level residuals change after a payload step, providing feedback on aggregate dynamics mismatch across all four legs.</p>
+            <p>The signal captures the combined effects of contact, loading, and model mismatch. It does not identify individual external forces or payload mass, and the policy uses it as an observation rather than direct torque compensation.</p>
+            <p class="figure-note">An additional view of the residual feedback, beyond the figures in the paper.</p>
+          </div>
+          <figure class="residual-figure">
+            <a class="image-link" href="./static/images/caro/residuals.png" target="_blank" rel="noopener" aria-label="View the full-size joint residual response plot (new tab)">
+              <img src="./static/images/caro/residuals.png" width="2025" height="1887" loading="lazy" decoding="async" alt="Estimated HipX, HipY, and knee residuals in newton-metres for the front-left, front-right, rear-left, and rear-right legs, before and after the marked payload step.">
+            </a>
+            <figcaption>Estimated joint residuals before and after the payload step.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section real-world-section" aria-labelledby="real-world-title">
+      <div class="container page-container">
+        <h2 class="title section-title" id="real-world-title">Real-world Results</h2>
+        <p class="section-intro">Zero-shot deployment on the DeepRobotics Lite3, without hardware-specific policy fine-tuning.</p>
+        <article class="experiment">
+          <h3 class="title subsection-title">Maintaining heading under a center-of-mass shift</h3>
+          <p class="experiment-description">With a <strong>2.5 kg payload attached laterally</strong>, CARO restores a near-level body attitude and maintains the commanded heading. Vanilla develops persistent roll and heading deviation.</p>
+          <div class="comparison-grid">
+            <figure>
+              <a class="image-link" href="./static/images/caro/com-vanilla.webp" target="_blank" rel="noopener" aria-label="View the full-size Vanilla center-of-mass shift experiment (new tab)">
+                <img src="./static/images/caro/com-vanilla-thumb.webp" width="960" height="540" loading="lazy" decoding="async" alt="Time-composited Vanilla trial with a lateral payload: successive robot poses show rolling and a curved path.">
+              </a>
+              <figcaption><span class="method-label">Vanilla</span><span>Heading deviation</span></figcaption>
+            </figure>
+            <figure>
+              <a class="image-link" href="./static/images/caro/com-caro.webp" target="_blank" rel="noopener" aria-label="View the full-size CARO center-of-mass shift experiment (new tab)">
+                <img src="./static/images/caro/com-caro-thumb.webp" width="960" height="540" loading="lazy" decoding="async" alt="Time-composited CARO trial with a lateral payload: successive robot poses maintain a straight heading and near-level body.">
+              </a>
+              <figcaption><span class="method-label caro-label">CARO</span><span>Heading maintained</span></figcaption>
+            </figure>
+          </div>
+          <p class="comparison-note">Overlaid poses show temporal progression within each trial.</p>
+        </article>
+        <article class="experiment">
+          <h3 class="title subsection-title">Walking with an 8.5 kg payload</h3>
+          <p class="experiment-description">CARO maintains forward locomotion with an <strong>8.5 kg payload</strong>. Vanilla falls in the illustrated 6.5 kg trial.</p>
+          <div class="comparison-grid payload-grid">
+            <figure>
+              <a class="image-link" href="./static/images/caro/payload-vanilla.webp" target="_blank" rel="noopener" aria-label="View the full-size Vanilla 6.5 kg payload experiment (new tab)">
+                <img src="./static/images/caro/payload-vanilla-thumb.webp" width="503" height="293" loading="lazy" decoding="async" alt="Vanilla robot falling while carrying a 6.5 kilogram payload.">
+              </a>
+              <figcaption><span class="method-label">Vanilla · 6.5 kg</span><span>Falls</span></figcaption>
+            </figure>
+            <figure>
+              <a class="image-link" href="./static/images/caro/payload-caro.webp" target="_blank" rel="noopener" aria-label="View the full-size CARO 8.5 kg payload experiment (new tab)">
+                <img src="./static/images/caro/payload-caro-thumb.webp" width="460" height="322" loading="lazy" decoding="async" alt="CARO robot walking upright with an 8.5 kilogram payload secured on its back.">
+              </a>
+              <figcaption><span class="method-label caro-label">CARO · 8.5 kg</span><span>Stable locomotion</span></figcaption>
+            </figure>
+          </div>
+        </article>
+        <article class="experiment">
+          <h3 class="title subsection-title">Recovering from a platform landing</h3>
+          <p class="experiment-description">Released from a <strong>0.2 m platform</strong>, CARO absorbs the impact and continues forward: <strong>3/3 successful landings</strong>, compared with 0/3 for Vanilla. Platform landings were not included in training.</p>
+          <div class="comparison-grid">
+            <figure>
+              <a class="image-link" href="./static/images/caro/landing-vanilla.webp" target="_blank" rel="noopener" aria-label="View the full-size Vanilla platform landing experiment (new tab)">
+                <img src="./static/images/caro/landing-vanilla-thumb.webp" width="960" height="540" loading="lazy" decoding="async" alt="Time-composited Vanilla landing from a low platform, showing the robot overturning after impact.">
+              </a>
+              <figcaption><span class="method-label">Vanilla</span><span>0/3 successful landings</span></figcaption>
+            </figure>
+            <figure>
+              <a class="image-link" href="./static/images/caro/landing-caro.webp" target="_blank" rel="noopener" aria-label="View the full-size CARO platform landing experiment (new tab)">
+                <img src="./static/images/caro/landing-caro-thumb.webp" width="960" height="540" loading="lazy" decoding="async" alt="Time-composited CARO landing from a low platform, showing impact absorption, recovery, and continued forward locomotion.">
+              </a>
+              <figcaption><span class="method-label caro-label">CARO</span><span>3/3 successful landings</span></figcaption>
+            </figure>
+          </div>
+          <p class="comparison-note">Overlaid poses show temporal progression. Outcomes refer to three tested trials per policy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section simulation-section" aria-labelledby="simulation-title">
+      <div class="container page-container">
+        <h2 class="title section-title" id="simulation-title">Simulation Results</h2>
+        <p class="section-intro">Across <strong>25 payload–terrain combinations</strong> covering five terrains and five base-mass scales, CARO achieves <strong>87.1% mean success</strong>. Each combination uses 1,024 independently initialized rollouts; success means traversing 10 m within 15 seconds without falling.</p>
+        <figure class="wide-figure terrain-overview">
+          <a class="image-link" href="./static/images/caro/simulation-terrains.png" target="_blank" rel="noopener" aria-label="View the full-size simulation terrain overview (new tab)">
+            <img src="./static/images/caro/simulation-terrains.png" width="3345" height="634" loading="lazy" decoding="async" alt="Five simulation terrains: flat ground, slope, rough slope, stepping stones, and wave-shaped terrain.">
+          </a>
+          <figcaption>The five evaluation terrains. Only flat terrain is seen during training.</figcaption>
+        </figure>
+        <div class="results-table-wrapper">
+          <table class="results-table" aria-describedby="results-table-note">
+            <caption>Success rate (%) · Paper Table III</caption>
+            <thead>
+              <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Mean<span>All conditions</span></th>
+                <th scope="col">2.5×<span>Base mass</span></th>
+                <th scope="col">3.0×<span>Base mass</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Vanilla</th><td>47.2</td><td>1.0</td><td>0.0</td></tr>
+              <tr class="caro-row"><th scope="row">CARO</th><td>87.1</td><td>87.4</td><td>64.5</td></tr>
+              <tr><th scope="row">RMA</th><td>81.7</td><td>84.6</td><td>36.4</td></tr>
+              <tr><th scope="row">RL2AC</th><td>61.2</td><td>44.9</td><td>0.2</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note" id="results-table-note">Mean success averages all 25 combinations of five terrains and five base-mass scales (1.0× to 3.0×). Each high-mass column averages the five terrains. Multipliers refer to the nominal <strong>5.6 kg base mass</strong>, not total robot mass.</p>
+        </div>
+        <p class="result-context">All methods share the training terrain, command, and domain-randomization settings. CARO has the highest overall success rate; RMA performs better on rough slope.</p>
+        <h3 class="title subsection-title simulation-subtitle">Adapting to a sudden payload change</h3>
+        <p class="experiment-description">When torso mass suddenly increases from 5.6 to 11.2 kg during walking, CARO stays closer to the forward-velocity command and quickly restores its mean yaw rate toward zero.</p>
+        <figure class="wide-figure response-figure">
+          <a class="image-link" href="./static/images/caro/velocity-response.png" target="_blank" rel="noopener" aria-label="View the full-size sudden payload response plot (new tab)">
+            <img src="./static/images/caro/velocity-response.png" width="4056" height="1385" loading="lazy" decoding="async" alt="Forward velocity and yaw rate for Vanilla, CARO, RMA, and RL2AC around a sudden 5.6 kilogram payload addition. CARO shows a smaller speed drop and rapid yaw-rate recovery.">
+          </a>
+          <figcaption>Time is relative to the payload step at 0 s. Curves show means over 100 environments; shading denotes ±1 standard deviation.</figcaption>
+        </figure>
+        <section class="tracking-results" aria-labelledby="tracking-error-title">
+          <h3 class="title subsection-title" id="tracking-error-title">Tracking errors before and after the payload step</h3>
+          <figure class="tracking-figure">
+            <a class="image-link" href="./static/images/caro/tracking-error.png" target="_blank" rel="noopener" aria-label="View the full-size tracking error comparison plot (new tab)">
+              <img src="./static/images/caro/tracking-error.png" width="1972" height="2097" loading="lazy" decoding="async" alt="Before-and-after mean linear-velocity and yaw-rate tracking errors for Vanilla, CARO, RMA, and RL2AC, with standard error bars.">
+            </a>
+            <figcaption>Mean linear-velocity and yaw-rate tracking errors before and after the payload step. Error bars indicate ±1 standard error of the mean (SEM).</figcaption>
+          </figure>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container text-container has-text-centered">
+      <p>Website adapted from <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>.</p>
+      <p>The website template is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
