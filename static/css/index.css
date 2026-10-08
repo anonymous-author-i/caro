@@ -60,6 +60,8 @@ figcaption { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top:
 .result-value span { font-size: 23px; }
 .result-note { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .section { padding: 53px 24px; }
+.video-section { padding: 0 24px 53px; }
+.publication-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 5px; }
 .abstract-section { background: var(--soft); }
 .section-title { color: var(--ink); font-size: 30px; font-weight: 650; text-align: center; margin-bottom: 23px !important; }
 .section-intro { max-width: 840px; margin: 0 auto 31px; text-align: center; }
@@ -133,6 +135,7 @@ figcaption { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top:
   .result-value span { font-size: 17px; }
   .result-note { font-size: 11px; }
   .section { padding: 37px 20px; }
+  .video-section { padding: 0 20px 37px; }
   .section-title { font-size: 27px; margin-bottom: 19px !important; }
   .section-intro { text-align: left; margin-bottom: 23px; }
   .subsection-title { font-size: 21px; }
